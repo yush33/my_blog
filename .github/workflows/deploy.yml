@@ -36,6 +36,8 @@ jobs:
         env:
           SITE: 'https://yush33.github.io'
           BASE_PATH: '/my_blog'
+      - name: Verify build output
+        run: ls -la dist/
       
       - name: Setup Pages
         uses: actions/configure-pages@v4
