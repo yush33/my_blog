@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import { getBlogPosts } from '../utils/blog';
+
+const posts = await getBlogPosts();
+const recentPosts = posts.slice(0, 6);
+const baseUrl = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="Home - My Blog">
+  <Header />
+  <main>
+    <!-- Hero Section with Large Image -->
+    <section class="relative w-full min-h-[70vh] flex items-center justify-center overflow-hidden bg-black mt-[73px]">
+      <img 
+        src="/이미지2.jpg" 
+        alt="Main Image" 
+        class="w-full h-full object-cover opacity-80"
+      />
+      <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60"></div>
+      <div class="absolute inset-0 flex flex-col items-center justify-center text-center z-10 px-4">
+        <h1 class="text-6xl md:text-8xl lg:text-9xl font-bold text-white mb-4 tracking-tight">
+          THE CULTURE<br />
+          THE FUTURE
+        </h1>
+        <p class="text-xl md:text-2xl text-white/90 mt-6 max-w-3xl font-light">
+          개발과 일상에 대한 이야기를 공유합니다
+        </p>
+      </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="container mx-auto px-4 py-20">
+      <div class="mb-16">
+        <h2 class="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-accent-500 to-accent-600 dark:from-accent-400 dark:to-accent-500 bg-clip-text text-transparent tracking-tight">
+          NEWS
+        </h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-accent-500 to-accent-600 dark:from-accent-400 dark:to-accent-500"></div>
+      </div>
+
+      {recentPosts.length > 0 ? (
+        <div class="space-y-8">
+          {recentPosts.map((post) => (
+            <a 
+              href={`${baseUrl}blog/${post.slug}`} 
+              class="block group"
+            >
+              <article class="border-b border-gray-200 dark:border-gray-700 pb-8 hover:opacity-70 transition-opacity">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                  <div class="flex-1">
+                    {post.category && (
+                      <span class="inline-block px-3 py-1 text-xs font-semibold text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 rounded mb-3">
+                        {post.category}
+                      </span>
+                    )}
+                    <h3 class="text-2xl md:text-3xl font-bold mb-2 text-gray-900 dark:text-white group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors">
+                      {post.title}
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-lg mb-4 line-clamp-2">
+                      {post.description}
+                    </p>
+                    <time class="text-sm text-gray-500 dark:text-gray-500">
+                      {new Intl.DateTimeFormat('ko-KR', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                      }).format(post.pubDate)}
+                    </time>
+                  </div>
+                </div>
+              </article>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <p class="text-gray-600 dark:text-gray-400 text-lg">아직 포스트가 없습니다.</p>
+      )}
+
+      {posts.length > 6 && (
+        <div class="text-center mt-16">
+          <a
+            href={`${baseUrl}blog`}
+            class="inline-block px-8 py-4 bg-gradient-to-r from-accent-500 to-accent-600 hover:from-accent-600 hover:to-accent-700 dark:from-accent-400 dark:to-accent-500 dark:hover:from-accent-500 dark:hover:to-accent-600 text-white transition-all font-semibold text-lg rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+          >
+            모든 포스트 보기 →
+          </a>
+        </div>
+      )}
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  section img {
+    max-height: 70vh;
+    object-fit: cover;
+  }
+</style>
+

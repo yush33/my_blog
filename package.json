@@ -1,0 +1,23 @@
+{
+  "name": "my-blog",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^4.0.0",
+    "@astrojs/markdown-remark": "^4.0.0",
+    "@astrojs/tailwind": "^5.1.0",
+    "date-fns": "^3.0.0",
+    "gray-matter": "^4.0.3"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  }
+}
+

@@ -1,0 +1,40 @@
+---
+interface Props {
+  categories: string[];
+  currentCategory?: string;
+}
+
+const { categories, currentCategory } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL;
+---
+
+{categories.length > 0 && (
+  <div class="mb-8">
+    <h3 class="text-lg font-semibold mb-4">카테고리</h3>
+    <div class="flex flex-wrap gap-2">
+      <a
+        href={`${baseUrl}blog`}
+        class={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+          !currentCategory
+            ? 'bg-primary-600 text-white'
+            : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary-100 dark:hover:bg-primary-900/30'
+        }`}
+      >
+        전체
+      </a>
+      {categories.map((category) => (
+        <a
+          href={`${baseUrl}blog?category=${encodeURIComponent(category)}`}
+          class={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+            currentCategory === category
+              ? 'bg-primary-600 text-white'
+              : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary-100 dark:hover:bg-primary-900/30'
+          }`}
+        >
+          {category}
+        </a>
+      ))}
+    </div>
+  </div>
+)}
+
