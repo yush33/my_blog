@@ -33,9 +33,6 @@ jobs:
       
       - name: Build
         run: npm run build
-        env:
-          SITE: 'https://yush33.github.io'
-          BASE_PATH: '/my_blog'
       - name: Verify build output
         run: ls -la dist/
       
