@@ -11,7 +11,7 @@ const normalizedBaseUrl = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl
     <div class="flex items-center justify-between">
       <a href={baseUrl} class="flex items-center gap-3 hover:opacity-70 transition-opacity">
         <img 
-          src="/blogicon.png" 
+          src={`${baseUrl}blogicon.png`} 
           alt="Blog Icon" 
           class="w-10 h-10 md:w-12 md:h-12 object-contain"
         />
