@@ -6,6 +6,7 @@ import { getBlogPosts } from '../utils/blog';
 const posts = await getBlogPosts();
 const recentPosts = posts.slice(0, 6);
 const baseUrl = import.meta.env.BASE_URL;
+const imageBase = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
 ---
 
 <BaseLayout title="Home - My Blog">
@@ -14,7 +15,7 @@ const baseUrl = import.meta.env.BASE_URL;
     <!-- Hero Section with Large Image -->
     <section class="relative w-full min-h-[70vh] flex items-center justify-center overflow-hidden bg-black mt-[73px]">
       <img 
-        src={`${baseUrl}이미지2.jpg`} 
+        src={`${imageBase}이미지2.jpg`} 
         alt="Main Image" 
         class="w-full h-full object-cover opacity-80"
       />

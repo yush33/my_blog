@@ -4,6 +4,7 @@ import DarkModeToggle from './DarkModeToggle.astro';
 const currentPath = Astro.url.pathname;
 const baseUrl = import.meta.env.BASE_URL;
 const normalizedBaseUrl = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
+const imageBase = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
 ---
 
 <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
@@ -11,7 +12,7 @@ const normalizedBaseUrl = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl
     <div class="flex items-center justify-between">
       <a href={baseUrl} class="flex items-center gap-3 hover:opacity-70 transition-opacity">
         <img 
-          src={`${baseUrl}blogicon.png`} 
+          src={`${imageBase}blogicon.png`} 
           alt="Blog Icon" 
           class="w-10 h-10 md:w-12 md:h-12 object-contain"
         />

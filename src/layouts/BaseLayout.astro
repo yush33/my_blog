@@ -9,6 +9,7 @@ interface Props {
 
 const { title, description = "개인 블로그입니다." } = Astro.props;
 const baseUrl = import.meta.env.BASE_URL;
+const imageBase = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
 ---
 
 <!doctype html>
@@ -17,7 +18,7 @@ const baseUrl = import.meta.env.BASE_URL;
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href={`${baseUrl}favicon.png`} />
+    <link rel="icon" type="image/png" href={`${imageBase}favicon.png`} />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     {/* 페이지 렌더링 전에 다크 모드 클래스 적용 - 깜빡임 방지 */}
