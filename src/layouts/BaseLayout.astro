@@ -7,9 +7,14 @@ interface Props {
   description?: string;
 }
 
-const { title, description = "개인 블로그입니다." } = Astro.props;
+const { title, description = "일상을 공유하는 블로그" } = Astro.props;
 const baseUrl = import.meta.env.BASE_URL;
 const imageBase = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
+const siteUrl = import.meta.env.SITE || 'https://yush33.github.io';
+const ogImageUrl = `${siteUrl}${imageBase}blogicon.png`;
+// Get current path without base URL duplication
+const currentPath = Astro.url.pathname.replace(baseUrl, '') || '';
+const currentUrl = `${siteUrl}${baseUrl === '/' ? '' : baseUrl}${currentPath === '/' ? '' : currentPath}`;
 ---
 
 <!doctype html>
@@ -21,6 +26,24 @@ const imageBase = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
     <link rel="icon" type="image/png" href={`${imageBase}favicon.png`} />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    
+    {/* Open Graph / Facebook */}
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={currentUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:site_name" content="My Blog" />
+    
+    {/* Twitter Card */}
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content={currentUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    
+    {/* Author */}
+    <meta name="author" content="yush33" />
     {/* 페이지 렌더링 전에 다크 모드 클래스 적용 - 깜빡임 방지 */}
     <script is:inline>
       (function() {
