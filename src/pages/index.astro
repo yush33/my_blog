@@ -13,19 +13,19 @@ const imageBase = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
   <Header />
   <main>
     <!-- Hero Section with Large Image -->
-    <section class="relative w-full min-h-[70vh] flex items-center justify-center overflow-hidden bg-black mt-[73px]">
+    <section class="relative w-full min-h-[70vh] flex items-center justify-center overflow-hidden bg-black pt-24 sm:pt-28 md:pt-[73px]">
       <img 
         src={`${imageBase}main-image.jpg`} 
         alt="Main Image" 
         class="w-full h-full object-cover opacity-80"
       />
       <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60"></div>
-      <div class="absolute inset-0 flex flex-col items-center justify-center text-center z-10 px-4">
-        <h1 class="text-6xl md:text-8xl lg:text-9xl font-bold text-white mb-4 tracking-tight">
+      <div class="absolute inset-0 flex flex-col items-center justify-center text-center z-10 px-4 pt-16 sm:pt-20 md:pt-0">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-9xl font-bold text-white mb-4 tracking-tight">
           THE CULTURE<br />
           THE FUTURE
         </h1>
-        <p class="text-xl md:text-2xl text-white/90 mt-6 max-w-3xl font-light">
+        <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mt-4 sm:mt-6 max-w-3xl font-light">
           개발과 일상에 대한 이야기를 공유합니다
         </p>
       </div>

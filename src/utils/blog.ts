@@ -54,3 +54,4 @@ export function filterPostsByCategory(posts: BlogPost[], category: string): Blog
   return posts.filter((post) => post.category === category);
 }
 
+
